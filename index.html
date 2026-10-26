@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MOVIES - Jelajahi Dunia Film</title>
+
+<style>
+
+/* PENGATURAN DASAR */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #101018;
+    color: white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* HEADER */
+
+header {
+    background: #191923;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #ff4567;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #ff4567;
+}
+
+.search {
+    background: #30303e;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    width: 230px;
+}
+
+/* BANNER */
+
+.hero {
+    min-height: 400px;
+    background: linear-gradient(120deg,#291724,#101018);
+    display: flex;
+    align-items: center;
+    padding: 60px 7%;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.label {
+    color: #ff4567;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: 43px;
+    margin: 20px 0;
+}
+
+.hero p {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* TOMBOL */
+
+.btn {
+    display: inline-block;
+    padding: 13px 23px;
+    background: #ff4567;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.btn:hover {
+    background: #e63255;
+}
+
+.btn-back {
+    background: #30303e;
+}
+
+/* INTRO */
+
+.intro {
+    text-align: center;
+    padding: 45px 8%;
+}
+
+.intro h2 {
+    margin-bottom: 18px;
+}
+
+.intro p {
+    color: #aaa;
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+/* KATEGORI */
+
+.genre-section {
+    padding: 30px 5%;
+    scroll-margin-top: 120px;
+}
+
+.genre-section h2 {
+    border-left: 5px solid #ff4567;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.genre-desc {
+    color: #aaa;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+/* GRID FILM */
+
+.film-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+    gap: 20px;
+}
+
+.film-card {
+    background: #20202d;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.film-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px #0008;
+}
+
+.film-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+}
+
+.film-info {
+    padding: 13px;
+}
+
+.film-info h3 {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 9px;
+}
+
+.film-info p {
+    color: #ffce57;
+    font-size: 13px;
+}
+
+/* DETAIL FILM */
+
+.detail {
+    padding: 40px 7%;
+    min-height: 75vh;
+}
+
+.detail-container {
+    display: flex;
+    gap: 35px;
+    margin-top: 30px;
+    align-items: flex-start;
+}
+
+.detail-poster {
+    width: 280px;
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+.detail-content {
+    flex: 1;
+}
+
+.detail-content h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.detail-content p {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.detail-content h2 {
+    margin: 20px 0 12px;
+}
+
+/* VIDEO */
+
+.video-section {
+    margin-top: 35px;
+}
+
+.video-section h2 {
+    margin-bottom: 20px;
+}
+
+.video-player {
+    width: 100%;
+    max-width: 950px;
+    aspect-ratio: 16/9;
+    border: none;
+    border-radius: 12px;
+    background: black;
+}
+
+.video-info {
+    color: #aaa;
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+/* PESAN */
+
+.pesan {
+    text-align: center;
+    color: #aaa;
+    padding: 35px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    background: #191923;
+    padding: 35px 20px;
+    margin-top: 40px;
+}
+
+footer h2 {
+    color: #ff4567;
+}
+
+footer p {
+    color: #aaa;
+    margin: 15px 0;
+}
+
+footer small {
+    color: #777;
+}
+
+/* TAMPILAN HP */
+
+@media(max-width:650px) {
+
+    header {
+        justify-content: center;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .hero {
+        min-height: 350px;
+        padding: 40px 6%;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .film-grid {
+        grid-template-columns: repeat(2,1fr);
+        gap: 13px;
+    }
+
+    .film-card img {
+        height: 190px;
+    }
+
+    .detail-container {
+        flex-direction: column;
+    }
+
+    .detail-poster {
+        width: 220px;
+    }
+
+    .detail-content h1 {
+        font-size: 27px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo" onclick="keBeranda()">
+        MOVIES
+    </div>
+
+    <nav>
+        <a href="#" onclick="keBeranda()">Beranda</a>
+        <a href="#daftarFilm" onclick="bukaDaftar()">Daftar Film</a>
+    </nav>
+
+    <input
+        class="search"
+        type="text"
+        id="searchInput"
+        placeholder="Cari judul film..."
+        oninput="cariFilm()"
+    >
+
+</header>
+
+
+<!-- BERANDA -->
+
+<main id="beranda">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="label">
+                WELCOME TO MOVIES
+            </span>
+
+            <h1>
+                Temukan Film Favoritmu!
+            </h1>
+
+            <p>
+                Jelajahi berbagai pilihan film menarik.
+                Mulai dari horor, romantis, komedi,
+                aksi, animasi, hingga petualangan.
+                Pilih film favoritmu dan nikmati
+                tontonan melalui YouTube.
+            </p>
+
+            <a href="#daftarFilm" class="btn">
+                Jelajahi Film
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- DESKRIPSI -->
+
+    <section class="intro">
+
+        <h2>Selamat Datang di MOVIES</h2>
+
+        <p>
+            MOVIES merupakan website katalog film yang
+            menyediakan berbagai informasi mengenai dunia
+            perfilman. Temukan pilihan film berdasarkan
+            genre favoritmu, lihat poster, sinopsis,
+            rating, serta nikmati video melalui YouTube.
+        </p>
+
+    </section>
+
+
+    <!-- DAFTAR FILM -->
+
+    <div id="daftarFilm"></div>
+
+    <!-- FILM TAMBAHAN DARI API -->
+
+    <div id="filmAPI"></div>
+
+</main>
+
+
+<!-- HALAMAN DETAIL -->
+
+<section id="detailFilm" class="detail hidden"></section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>MOVIES</h2>
+
+    <p>
+        Temukan cerita favoritmu dalam setiap film.
+    </p>
+
+    <small>
+        Informasi film didukung oleh TMDB.
+        Video ditampilkan melalui YouTube.
+        Website ini tidak berafiliasi dengan TMDB.
+    </small>
+
+</footer>
+
+
+<script>
+
+// ========================================
+// 1. KONFIGURASI API
+// ========================================
+
+const API_KEY = "500d7d0fe7b64f651a924946de0f1c9f";
+
+const BASE_URL = "https://api.themoviedb.org/3";
+
+const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+
+
+// ========================================
+// 2. DATA VIDEO YOUTUBE
+// ========================================
+
+// Semua link yang kamu kirim sudah dimasukkan.
+// ID video diambil dari link YouTube.
+
+const videoYoutube = [
+
+    // HOROR
+
+    {
+        id: "Vto2kgrhVHM",
+        judul: "Video Horor 1",
+        genre: "Horor",
+        deskripsi: "Pilihan tontonan dengan tema horor dan cerita hantu."
+    },
+
+    {
+        id: "3kpj0BJ4OfQ",
+        judul: "Video Horor 2",
+        genre: "Horor",
+        deskripsi: "Tontonan pilihan dari kategori horor."
+    },
+
+    {
+        id: "_x8Bv2rAMn4",
+        judul: "Video Horor 3",
+        genre: "Horor",
+        deskripsi: "Video pilihan dengan tema horor."
+    },
+
+
+    // KOMEDI
+
+    {
+        id: "Uvy5yL4O5Mw",
+        judul: "Video Komedi 1",
+        genre: "Komedi",
+        deskripsi: "Tontonan pilihan dari kategori komedi."
+    },
+
+    {
+        id: "Y1g8FrAzsn4",
+        judul: "Video Komedi 2",
+        genre: "Komedi",
+        deskripsi: "Video hiburan bertema komedi."
+    },
+
+    {
+        id: "2AeQyTyAYuw",
+        judul: "Video Komedi 3",
+        genre: "Komedi",
+        deskripsi: "Pilihan tontonan komedi."
+    },
+
+
+    // ROMANTIS
+
+    {
+        id: "KqUsJM1HQs4",
+        judul: "Video Romantis 1",
+        genre: "Romantis",
+        deskripsi: "Pilihan tontonan bertema romantis."
+    },
+
+    {
+        id: "nfc2kHv8Db0",
+        judul: "Video Romantis 2",
+        genre: "Romantis",
+        deskripsi: "Video pilihan dari kategori romantis."
+    },
+
+    {
+        id: "cKF_KBG6jFk",
+        judul: "Video Romantis 3",
+        genre: "Romantis",
+        deskripsi: "Tontonan pilihan bertema romantis."
+    }
+
+];
+
+
+// ========================================
+// 3. DATA GENRE FILM TMDB
+// ========================================
+
+const genreFilm = [
+
+    { nama: "Horor", id: 27, jumlah: 7 },
+
+    { nama: "Romantis", id: 10749, jumlah: 5 },
+
+    { nama: "Komedi", id: 35, jumlah: 4 },
+
+    { nama: "Aksi", id: 28, jumlah: 7 },
+
+    { nama: "Petualangan", id: 12, jumlah: 7 },
+
+    { nama: "Animasi", id: 16, jumlah: 7 },
+
+    { nama: "Drama", id: 18, jumlah: 6 },
+
+    { nama: "Fantasi", id: 14, jumlah: 5 },
+
+    { nama: "Misteri", id: 9648, jumlah: 5 },
+
+    { nama: "Fiksi Ilmiah", id: 878, jumlah: 5 }
+
+];
+
+
+// ========================================
+// 4. MENGAMBIL DATA API
+// ========================================
+
+async function ambilData(endpoint) {
+
+    try {
+
+        const pemisah = endpoint.includes("?") ? "&" : "?";
+
+        const response = await fetch(
+            BASE_URL + endpoint + pemisah +
+            "api_key=" + API_KEY +
+            "&language=id-ID"
+        );
+
+        if (!response.ok) {
+            throw new Error("API gagal dimuat");
+        }
+
+        return await response.json();
+
+    } catch(error) {
+
+        console.error(error);
+
+        return null;
+
+    }
+
+}
+
+
+// ========================================
+// 5. MEMBUAT KARTU YOUTUBE
+// ========================================
+
+function buatKartuYoutube(video) {
+
+    const thumbnail =
+        "https://img.youtube.com/vi/" +
+        video.id +
+        "/hqdefault.jpg";
+
+    return `
+
+        <div class="film-card"
+             onclick="lihatYoutube('${video.id}')">
+
+            <img
+                src="${thumbnail}"
+                alt="Thumbnail video"
+                loading="lazy"
+            >
+
+            <div class="film-info">
+
+                <h3>${video.judul}</h3>
+
+                <p>▶ Tonton di YouTube</p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+// ========================================
+// 6. MENAMPILKAN VIDEO YOUTUBE
+// ========================================
+
+function tampilkanYoutube() {
+
+    const container =
+        document.getElementById("daftarFilm");
+
+    const kategori = [
+
+        {
+            nama: "Horor",
+            deskripsi: "Pilihan video horor dan cerita hantu."
+        },
+
+        {
+            nama: "Romantis",
+            deskripsi: "Pilihan video bertema romantis."
+        },
+
+        {
+            nama: "Komedi",
+            deskripsi: "Pilihan video hiburan dan komedi."
+        }
+
+    ];
+
+    let hasil = "";
+
+    kategori.forEach(item => {
+
+        const daftar = videoYoutube.filter(
+            video => video.genre === item.nama
+        );
+
+        hasil += `
+
+            <section class="genre-section">
+
+                <h2>▶ ${item.nama}</h2>
+
+                <p class="genre-desc">
+                    ${item.deskripsi}
+                </p>
+
+                <div class="film-grid">
+
+                    ${daftar.map(buatKartuYoutube).join("")}
+
+                </div>
+
+            </section>
+
+        `;
+
+    });
+
+    container.innerHTML = hasil;
+
+}
+
+
+// ========================================
+// 7. HALAMAN NONTON YOUTUBE
+// ========================================
+
+function lihatYoutube(id) {
+
+    const video = videoYoutube.find(
+        item => item.id === id
+    );
+
+    if (!video) return;
+
+    document.getElementById("beranda")
+        .classList.add("hidden");
+
+    const detail =
+        document.getElementById("detailFilm");
+
+    detail.classList.remove("hidden");
+
+    detail.innerHTML = `
+
+        <button class="btn btn-back"
+                onclick="keBeranda()">
+
+            ← Kembali ke Beranda
+
+        </button>
+
+
+        <div class="video-section">
+
+            <h1>${video.judul}</h1>
+
+            <p class="video-info">
+                Genre: ${video.genre}
+            </p>
+
+            <br>
+
+            <iframe
+                class="video-player"
+
+                src="https://www.youtube-nocookie.com/embed/${video.id}"
+
+                title="${video.judul}"
+
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+
+                allowfullscreen>
+            </iframe>
+
+
+            <p class="video-info">
+                ${video.deskripsi}
+            </p>
+
+            <br>
+
+            <a
+                class="btn"
+
+                href="https://www.youtube.com/watch?v=${video.id}"
+
+                target="_blank"
+
+                rel="noopener noreferrer">
+
+                ▶ Tonton Langsung di YouTube
+
+            </a>
+
+            <p class="video-info">
+                Jika pemutar tidak tersedia, gunakan tombol
+                di atas untuk membuka video langsung di YouTube.
+            </p>
+
+        </div>
+
+    `;
+
+    window.scrollTo(0,0);
+
+}
+
+
+// ========================================
+// 8. MEMBUAT KARTU FILM TMDB
+// ========================================
+
+function buatKartuFilm(film) {
+
+    const poster = film.poster_path
+
+        ? IMAGE_URL + film.poster_path
+
+        : "https://placehold.co/500x750?text=No+Poster";
+
+    return `
+
+        <div class="film-card"
+             onclick="lihatDetail(${film.id})">
+
+            <img
+                src="${poster}"
+                loading="lazy"
+                alt="Poster film"
+            >
+
+            <div class="film-info">
+
+                <h3>${film.title}</h3>
+
+                <p>
+                    ⭐ ${Number(film.vote_average || 0).toFixed(1)} / 10
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+// ========================================
+// 9. MENAMPILKAN FILM DARI API
+// ========================================
+
+let daftarFilmAPI = [];
+
+async function tampilkanFilmAPI() {
+
+    const container =
+        document.getElementById("filmAPI");
+
+    container.innerHTML = `
+
+        <p class="pesan">
+            Sedang mengambil rekomendasi film...
+        </p>
+
+    `;
+
+    const hasil = await Promise.all(
+
+        genreFilm.map(async genre => {
+
+            const data = await ambilData(
+
+                "/discover/movie?with_genres=" +
+                genre.id +
+                "&sort_by=popularity.desc&include_adult=false"
+
+            );
+
+            if (!data || !data.results) return "";
+
+            const daftar = data.results
+
+                .filter(film => film.poster_path)
+
+                .slice(0,genre.jumlah);
+
+            daftarFilmAPI.push(...daftar);
+
+            return `
+
+                <section class="genre-section">
+
+                    <h2>🎬 Film ${genre.nama}</h2>
+
+                    <div class="film-grid">
+
+                        ${daftar.map(buatKartuFilm).join("")}
+
+                    </div>
+
+                </section>
+
+            `;
+
+        })
+
+    );
+
+    const isi = hasil.join("");
+
+    container.innerHTML = isi || `
+
+        <p class="pesan">
+            Rekomendasi film belum dapat dimuat.
+            Periksa koneksi internet atau API.
+            Video YouTube pilihan tetap tersedia.
+        </p>
+
+    `;
+
+}
+
+
+// ========================================
+// 10. DETAIL FILM TMDB
+// ========================================
+
+async function lihatDetail(id) {
+
+    document.getElementById("beranda")
+        .classList.add("hidden");
+
+    const detail =
+        document.getElementById("detailFilm");
+
+    detail.classList.remove("hidden");
+
+    detail.innerHTML = `
+
+        <p class="pesan">
+            Sedang memuat detail film...
+        </p>
+
+    `;
+
+    window.scrollTo(0,0);
+
+
+    const [film, video] = await Promise.all([
+
+        ambilData("/movie/" + id),
+
+        ambilData("/movie/" + id + "/videos")
+
+    ]);
+
+
+    if (!film) {
+
+        detail.innerHTML = `
+
+            <h2>Film gagal dimuat.</h2>
+
+            <button class="btn" onclick="keBeranda()">
+                Kembali
+            </button>
+
+        `;
+
+        return;
+
+    }
+
+
+    const genre = film.genres
+        .map(item => item.name)
+        .join(", ");
+
+
+    const poster = film.poster_path
+
+        ? IMAGE_URL + film.poster_path
+
+        : "https://placehold.co/500x750?text=No+Poster";
+
+
+    const trailer = video?.results?.find(
+
+        item =>
+            item.site === "YouTube" &&
+            item.type === "Trailer"
+
+    ) || video?.results?.find(
+
+        item => item.site === "YouTube"
+
+    );
+
+
+    detail.innerHTML = `
+
+        <button class="btn btn-back"
+                onclick="keBeranda()">
+
+            ← Kembali ke Beranda
+
+        </button>
+
+
+        <div class="detail-container">
+
+            <img
+                class="detail-poster"
+                src="${poster}"
+                alt="Poster film"
+            >
+
+
+            <div class="detail-content">
+
+                <h1>${film.title}</h1>
+
+                <p>
+                    ⭐ Rating:
+                    ${Number(film.vote_average || 0).toFixed(1)} / 10
+                </p>
+
+                <p>
+                    <b>Genre:</b> ${genre}
+                </p>
+
+                <p>
+                    <b>Tanggal Rilis:</b>
+                    ${film.release_date || "-"}
+                </p>
+
+                <p>
+                    <b>Durasi:</b>
+                    ${film.runtime || "-"} menit
+                </p>
+
+                <h2>Sinopsis</h2>
+
+                <p>
+                    ${film.overview || "Sinopsis belum tersedia."}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="video-section">
+
+            <h2>▶ Tonton Trailer</h2>
+
+            ${
+
+                trailer
+
+                ? `
+
+                    <iframe
+                        class="video-player"
+
+                        src="https://www.youtube-nocookie.com/embed/${trailer.key}"
+
+                        title="Trailer film"
+
+                        allowfullscreen>
+                    </iframe>
+
+                    <br>
+
+                    <a
+                        class="btn"
+
+                        href="https://www.youtube.com/watch?v=${trailer.key}"
+
+                        target="_blank"
+
+                        rel="noopener noreferrer">
+
+                        ▶ Buka di YouTube
+
+                    </a>
+
+                `
+
+                : `
+
+                    <p class="video-info">
+                        Trailer belum tersedia.
+                    </p>
+
+                    <a
+                        class="btn"
+
+                        target="_blank"
+
+                        rel="noopener noreferrer"
+
+                        href="https://www.youtube.com/results?search_query=${encodeURIComponent(film.title + " official trailer")}">
+
+                        ▶ Cari di YouTube
+
+                    </a>
+
+                `
+
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+// ========================================
+// 11. KEMBALI KE BERANDA
+// ========================================
+
+function keBeranda() {
+
+    document.getElementById("beranda")
+        .classList.remove("hidden");
+
+    const detail =
+        document.getElementById("detailFilm");
+
+    detail.classList.add("hidden");
+
+    // Menghapus iframe agar video berhenti
+    detail.innerHTML = "";
+
+    window.scrollTo(0,0);
+
+}
+
+
+// ========================================
+// 12. MEMBUKA DAFTAR FILM
+// ========================================
+
+function bukaDaftar() {
+
+    keBeranda();
+
+    setTimeout(() => {
+
+        document.getElementById("daftarFilm")
+            .scrollIntoView();
+
+    }, 100);
+
+}
+
+
+// ========================================
+// 13. FITUR PENCARIAN
+// ========================================
+
+let timerCari;
+
+function cariFilm() {
+
+    clearTimeout(timerCari);
+
+    timerCari = setTimeout(async () => {
+
+        const keyword = document
+            .getElementById("searchInput")
+            .value.trim()
+            .toLowerCase();
+
+
+        // Jika pencarian kosong
+
+        if (keyword === "") {
+
+            tampilkanYoutube();
+
+            tampilkanFilmAPI();
+
+            return;
+
+        }
+
+
+        // Mencari video YouTube
+
+        const hasilYoutube = videoYoutube.filter(video =>
+
+            video.judul.toLowerCase().includes(keyword)
+
+            ||
+
+            video.genre.toLowerCase().includes(keyword)
+
+        );
+
+
+        // Mencari film dari API
+
+        const hasilFilm = daftarFilmAPI.filter(film =>
+
+            film.title.toLowerCase().includes(keyword)
+
+        );
+
+
+        // Menampilkan hasil pencarian
+
+        document.getElementById("daftarFilm").innerHTML = `
+
+            <section class="genre-section">
+
+                <h2>Hasil Pencarian</h2>
+
+                <div class="film-grid">
+
+                    ${hasilYoutube.map(buatKartuYoutube).join("")}
+
+                    ${hasilFilm.map(buatKartuFilm).join("")}
+
+                </div>
+
+                ${
+
+                    !hasilYoutube.length && !hasilFilm.length
+
+                    ? '<p class="pesan">Film tidak ditemukan.</p>'
+
+                    : ''
+
+                }
+
+            </section>
+
+        `;
+
+
+        document.getElementById("filmAPI").innerHTML = "";
+
+    }, 300);
+
+}
+
+
+// ========================================
+// 14. MENJALANKAN WEBSITE
+// ========================================
+
+// Video YouTube langsung ditampilkan
+// tanpa harus menunggu API TMDB.
+
+function mulaiWebsite() {
+
+    tampilkanYoutube();
+
+    tampilkanFilmAPI();
+
+}
+
+
+// Menjalankan website setelah HTML siap
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        mulaiWebsite
+    );
+
+} else {
+
+    mulaiWebsite();
+
+}
+
+</script>
+
+</body>
+</html>
